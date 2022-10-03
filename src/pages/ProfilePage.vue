@@ -35,7 +35,7 @@
         </div>
         <div class="col-md-9 m-5" v-if="profile">
           <PostCard v-for="p in posts" :key="p.id" :post="p" :profile="profile" class="my-5"
-            @deletePost="deletePost(p.id)" />
+            @deletePost="deletePost()" />
         </div>
         <div class="col-md-9 text-center">
           <button @click="changePage(previousPage)" class="btn btn-primary">PreviousPosts</button>
@@ -79,7 +79,9 @@ export default {
     }
 
     onMounted(() => {
-      postService.getProfileById(route.params.id)
+      getProfileById(route.params.id)
+      // postService.getPosts()
+      postService.getPostsById(route.params.id)
     });
     return {
       state,

@@ -1,6 +1,6 @@
 <template>
   <div class="p-5">
-    <router-link :to=" {name: 'ProfileInfo' , params: {id: profile.id}}">
+    <router-link v-if="profile.id" :to=" {name: 'ProfileInfo' , params: {id: profile.id}}">
       <img :src="profile.picture">
     </router-link>
     <h6 class="mdi mdi-school text-end" v-if="profile.graduated">{{profile.graduated}}</h6>

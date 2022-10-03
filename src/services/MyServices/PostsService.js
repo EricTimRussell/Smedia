@@ -1,15 +1,13 @@
 import { AppState } from "../../AppState"
-import { Account } from "../../models/Account";
-import { Like } from "../../models/Like";
+import { AdTime } from "../../models/AdTime";
 import { Post } from "../../models/Post"
-import { Profile } from "../../models/Profile";
-import { logger } from "../../utils/Logger";
 import { apiSandbox } from "../AxiosService"
 
 class PostService {
   async getAds() {
     const res = await apiSandbox.get('api/ads')
-    AppState.ads = [res.data, ...AppState.ads]
+    console.log(res.data, "ad data");
+    AppState.ads = res.data.map(a => new AdTime(a))
   }
   async searchPosts(term, page = 1) {
     const res = await apiSandbox.get('api/posts', {
@@ -25,7 +23,7 @@ class PostService {
   }
   async addPost(formData) {
     const res = await apiSandbox.post('api/posts', formData)
-    AppState.posts.push(new Post(res.data))
+    AppState.posts.unshift(res.data)
   }
 
   async getPosts() {
@@ -36,8 +34,8 @@ class PostService {
     AppState.previousPage = res.data.newer
   }
   async getPostsById(id) {
-    const res = await apiSandbox.find(`api/posts/${id}`)
-    AppState.posts = AppState.posts.filter(p => p.id != id)
+    const res = await apiSandbox.get(`api/profiles/${id}/posts`)
+    AppState.posts = res.data.posts.map(p => new Post(p))
   }
   async deletePost(id) {
     const res = await apiSandbox.delete(`api/posts/${id}`)
@@ -58,7 +56,9 @@ class PostService {
 
   async addLike(id) {
     const res = await apiSandbox.post(`/api/posts/${id}/like`)
-    AppState.posts.push(new Like(res.data))
+    let postIndex = AppState.posts.findIndex(p => p.id == id)
+    AppState.posts.splice(postIndex, 1, new Post(res.data))
+    AppState.posts = AppState.posts
   }
 }
 

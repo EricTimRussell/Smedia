@@ -13,9 +13,6 @@
         <div class="col-md-9 m-5">
           <PostCard v-for="p in posts" :key="p.id" :post="p" class="my-5" @deletePost="deletePost(p.id)" />
         </div>
-        <div class="col-md-2">
-
-        </div>
         <div class="col-md-9 text-center">
           <button @click="changePage(previousPage)" class="btn btn-primary">PreviousPosts</button>
           <button @click="changePage(nextPage)" class="btn btn-primary">MorePosts</button>
@@ -51,6 +48,7 @@ export default {
 
     onMounted(() => {
       getPosts()
+
     })
     return {
       posts: computed(() => AppState.posts),

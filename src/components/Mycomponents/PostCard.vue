@@ -1,13 +1,13 @@
 <template>
   <div class="card cardshadow">
     <div class="d-flex justify-content-end p-2">
-      <h5 @click.stop="deletePost(id)" class="mdi mdi-delete p-1" v-if="profile.id == post.creatorId"></h5>
+      <h5 @click.stop="deletePost(post.id)" class="mdi mdi-delete p-1" v-if="profile.id == post.creatorId"></h5>
     </div>
     <div class="d-flex">
       <router-link :to="{name: 'ProfileInfo', params: {id: post.creatorId}}">
         <img class="img-fluid p-3 profileimg" :src="post.creator.picture" alt="">
       </router-link>
-      <h4 class="py-3">{{post.creator.name}}</h4>
+      <h4 class="py-3">{{post.creator?.name}}</h4>
       <p>{{post.createdAt}}</p>
     </div>
     <div class="card-body">
@@ -15,7 +15,7 @@
     </div>
     <img class="img-fluid postimg" :src="post.imgUrl" alt="">
     <div class="card-footer d-flex">
-      <h3 @click="addLike(account.id)" selectable class="mdi mdi-heart-outline mdi-heart px-2"></h3>
+      <h3 @click="addLike(post.id)" selectable class="mdi mdi-heart-outline mdi-heart px-2"></h3>
       <span><strong>{{post.likeIds.length}}</strong></span>
     </div>
   </div>
@@ -47,7 +47,7 @@ export default {
           Pop.error(error, "adding like")
         }
       },
-      account: computed(() => AppState.account)
+      account: computed(() => AppState.account),
     };
   },
 }
