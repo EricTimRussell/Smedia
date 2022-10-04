@@ -8,7 +8,6 @@
         <img class="img-fluid p-3 profileimg" :src="post.creator.picture" alt="">
       </router-link>
       <h4 class="py-3">{{post.creator?.name}}</h4>
-      <p>{{post.createdAt}}</p>
     </div>
     <div class="card-body">
       <p><strong>{{post.body}}</strong></p>
@@ -17,6 +16,7 @@
     <div class="card-footer d-flex">
       <h3 @click="addLike(post.id)" class="mdi mdi-heart-outline px-2 selectable2"></h3>
       <span><strong>{{post.likeIds.length}}</strong></span>
+      <p class="px-5">{{post.createdAt}}</p>
     </div>
   </div>
 </template>
