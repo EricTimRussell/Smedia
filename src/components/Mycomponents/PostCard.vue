@@ -15,7 +15,7 @@
     </div>
     <img class="img-fluid postimg" :src="post.imgUrl" alt="">
     <div class="card-footer d-flex">
-      <h3 @click="addLike(post.id)" selectable class="mdi mdi-heart-outline mdi-heart px-2"></h3>
+      <h3 @click="addLike(post.id)" class="mdi mdi-heart-outline px-2 selectable2"></h3>
       <span><strong>{{post.likeIds.length}}</strong></span>
     </div>
   </div>
@@ -48,6 +48,7 @@ export default {
         }
       },
       account: computed(() => AppState.account),
+
     };
   },
 }
@@ -69,5 +70,9 @@ export default {
 
 .cardshadow {
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.541);
+}
+
+.selectable2 {
+  cursor: pointer;
 }
 </style>

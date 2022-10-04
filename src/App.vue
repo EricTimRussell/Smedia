@@ -5,7 +5,6 @@
     <router-view />
   </main>
   <footer>
-    <micks-stuff />
   </footer>
 </template>
 <script>
@@ -21,7 +20,7 @@ export default {
       appState: computed(() => AppState),
     };
   },
-  components: { MicksStuff }
+
 }
 </script>
 <style lang="scss">

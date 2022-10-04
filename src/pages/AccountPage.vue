@@ -1,9 +1,7 @@
 <template>
   <div class="container-fluid">
-    <div class="row">
-      <div class="about text-center">
-        <ProfileDetail />
-      </div>
+    <div class="row profile">
+      <ProfileDetail />
       <AccountForm />
     </div>
   </div>
@@ -14,18 +12,17 @@ import { computed } from 'vue'
 import { AppState } from '../AppState'
 import AccountForm from "../components/Mycomponents/AccountForm.vue";
 import ProfileDetail from "../components/Mycomponents/ProfileDetail.vue";
+import NavbarForm from "../components/Mycomponents/NavbarForm.vue";
 export default {
   setup() {
     return {
       account: computed(() => AppState.account)
     };
   },
-  components: { AccountForm, ProfileDetail }
+  components: { AccountForm, ProfileDetail, NavbarForm }
 }
 </script>
 
 <style scoped>
-img {
-  max-width: 100px;
-}
+
 </style>

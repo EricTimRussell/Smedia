@@ -36,6 +36,8 @@ class PostService {
   async getPostsById(id) {
     const res = await apiSandbox.get(`api/profiles/${id}/posts`)
     AppState.posts = res.data.posts.map(p => new Post(p))
+    AppState.nextPage = res.data.older
+    AppState.previousPage = res.data.newer
   }
   async deletePost(id) {
     const res = await apiSandbox.delete(`api/posts/${id}`)
@@ -46,6 +48,7 @@ class PostService {
     const res = await apiSandbox.get(`/api/profiles/${id}`)
     console.log(res.data, "profile Data");
     AppState.activeProfile = res.data
+
   }
   async changePage(pageUrl) {
     const res = await apiSandbox.get(pageUrl)

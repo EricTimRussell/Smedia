@@ -1,15 +1,19 @@
 <template>
   <form class="card account-form" @submit.prevent="handleSubmit">
-    <div class="card-body text-start">
+    <div class="card-body text-start p-5">
       <div>
-        <label for="name">Email:</label>
-        <input type="text" class="form-control" v-model="editable.email" required name="name">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" v-model="editable.name" required name="name">
+      </div>
+      <div class="py-2">
+        <label for="email">Email:</label>
+        <input type="text" class="form-control" v-model="editable.email" required name="email">
       </div>
       <div>
         <label for="picture">Picture:</label>
         <input type="url" class="form-control" v-model="editable.picture" required name="picture" placeholder="picture">
       </div>
-      <div>
+      <div class="py-2">
         <label for="coverImg">Cover Image:</label>
         <input type="url" class="form-control" v-model="editable.coverImg" required name="coverImg">
       </div>
@@ -18,7 +22,7 @@
         <textarea type="text" class="form-control" v-model="editable.bio" name="bio" rows="8"
           style="resize:none"></textarea>
       </div>
-      <div>
+      <div class="py-2">
         <label for="class">Class</label>
         <input type="text" class="form-control" v-model="editable.class" required name="class">
       </div>
@@ -26,7 +30,7 @@
         <label for="graduated">Graduated</label>
         <input class="form-check-input mt-0" type="checkbox" v-model="editable.graduated">
       </div>
-      <div>
+      <div class="py-2">
         <label for="github">Github:</label>
         <input type="url" class="form-control" v-model="editable.github" name="github">
       </div>
@@ -34,12 +38,15 @@
         <label for="linkedin">Linkedin:</label>
         <input type="url" class="form-control" v-model="editable.linkedin" name="linkedin">
       </div>
-      <div>
+      <div class="py-2">
         <label for="resume">resume</label>
         <input type="url" class="form-control" v-model="editable.resume" name="resume">
       </div>
-      <div>
-        <button type="submit" class="btn btn-primary w-100 mt-2">Save</button>
+      <div class="d-flex justify-content-between">
+        <router-link :to="{name: 'Home'}">
+          <i class="mdi mdi-home fs-1 selectable"></i>
+        </router-link>
+        <button type="submit" class="btn btn-primary mt-2">Save</button>
       </div>
     </div>
   </form>

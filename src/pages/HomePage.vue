@@ -7,8 +7,11 @@
       </div>
       <div class="col-md-10 bg-primary justify-content-between navbar">
         <NavbarForm />
-        <div class="col-md-10 p-5">
+        <div class="col-md-10 px-5">
           <CreatePost />
+        </div>
+        <div class="col-md-2 ">
+          <micks-stuff class="ads" />
         </div>
         <div class="col-md-9 m-5">
           <PostCard v-for="p in posts" :key="p.id" :post="p" class="my-5" @deletePost="deletePost(p.id)" />
@@ -65,12 +68,15 @@ export default {
           } else {
             await postService.searchPosts(AppState.term)
           }
+          window.scrollTo(0, 0)
         } catch (error) {
           Pop.error(error, "PageChange")
         }
       },
       async deletePost(id) {
         try {
+          const yes = await Pop.confirm("Delete Post?")
+          if (!yes) { return }
           await postService.deletePost(id)
         } catch (error) {
           Pop.error(error, "delete post")
@@ -90,5 +96,9 @@ export default {
 
 .navbar {
   max-height: 15vh;
+}
+
+.ads {
+  min-width: 22vh;
 }
 </style>

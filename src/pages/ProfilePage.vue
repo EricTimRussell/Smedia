@@ -5,30 +5,33 @@
         <div>
           <Login />
         </div>
-        <Profile v-if="profile.id" :key="profile.id" />
+        <div @click="getloggedInUser()">
+          <Profile v-if="profile.id" :key="profile.id" />
+        </div>
       </div>
       <div class="col-md-10 navbar bg-primary justify-content-between">
         <NavbarForm />
         <div class="col-md-10 p-5" v-if="profile">
           <div class="card cardshadow">
-            <img :src="profile.coverImg" alt="">
-            <img class="profileimg" :src="profile.picture" alt=""><span v-if="profile.graduated"
-              class="mdi mdi-school">{{profile.graduated}}</span>
-            <h4>{{profile.class}}</h4>
+            <img :src="profile.coverImg" class="covimg">
+            <div class="p-3">
+              <img class="profileimg" :src="profile.picture" alt="">
+              <h6 class="bio">{{profile.bio}}</h6>
+              <h4 v-if="profile.graduated" class="mdi mdi-school fs-2">{{profile.class}}</h4>
+            </div>
             <div class="card-body">
-              <span class="mdi mdi-github fs-1">{{profile.github}}</span>
-              <span class="mdi mdi-linkedin fs-1">{{profile.linkedin}}</span>
-              <span class="mdi mdi-file-document fs-1">{{profile.resume}}</span>
+              <a :href="profile.github" class="mdi mdi-github selectable fs-1 github" v-if="profile.github"></a>
+              <a :href="profile.linkedin" class="mdi mdi-linkedin selectable fs-1 linkedin px-4"
+                v-if="profile.linkedin"></a>
+              <a :href="profile.resume" class="mdi mdi-file-document selectable fs-1 resume" v-if="profile.resume"></a>
               <div>
-                <h2>{{profile.class}}</h2>
                 <h1>{{profile.name}}</h1>
-              </div>
-              <div>
-                <p>{{profile.bio}}</p>
               </div>
             </div>
           </div>
-
+        </div>
+        <div class="col-md-2">
+          <MicksStuff class="ads" />
         </div>
         <div class="col-md-10 p-5">
           <CreatePost />
@@ -60,6 +63,7 @@ import Profile from "../components/Mycomponents/Profile.vue"
 import Login from "../components/Login.vue"
 import PostCard from "../components/Mycomponents/PostCard.vue"
 import ProfileDetail from "../components/Mycomponents/ProfileDetail.vue"
+import MicksStuff from "../components/Mycomponents/MicksStuff.vue"
 
 
 export default {
@@ -91,6 +95,10 @@ export default {
       nextPage: computed(() => AppState.nextPage),
       previousPage: computed(() => AppState.previousPage),
 
+      getloggedInUser() {
+        window.location.reload()
+      },
+
       async getPostsById(id) {
         try {
           await postService.getPostsById(id)
@@ -101,13 +109,14 @@ export default {
       async changePage(pageUrl) {
         try {
           await postService.changePage(pageUrl)
+          window.scrollTo(0, 0)
         } catch (error) {
           Pop.error(error, "PageChange")
         }
       },
     };
   },
-  components: { CreatePost, NavbarForm, Profile, Login, PostCard, ProfileDetail }
+  components: { CreatePost, NavbarForm, Profile, Login, PostCard, ProfileDetail, MicksStuff }
 }
 </script>
 
@@ -122,7 +131,7 @@ export default {
 }
 
 .cardshadow {
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.541);
+  box-shadow: 2px 2px 5px #0000008a;
 }
 
 .postimg {
@@ -135,5 +144,31 @@ export default {
   max-height: 20vh;
   max-width: 20vh;
   border-radius: 50%;
+}
+
+.covimg {
+  max-height: 25vh;
+  object-fit: cover;
+}
+
+.github {
+  color: black;
+}
+
+.linkedin {
+  color: #2ec8fc;
+}
+
+.resume {
+  color: #819797;
+}
+
+.bio {
+  max-width: 70vh;
+  margin-left: 22rem;
+}
+
+.ads {
+  min-width: 22vh;
 }
 </style>

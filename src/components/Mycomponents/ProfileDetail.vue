@@ -1,19 +1,20 @@
 <template>
   <div class="card cardshadow">
-    <img :src="profile.coverImg" alt="">
-    <img class="profileimg" :src="profile.picture" alt=""><span v-if="profile.graduated"
-      class="mdi mdi-school">{{profile.graduated}}</span>
-    <h4>{{profile.class}}</h4>
-    <div class="card-body">
-      <span class="mdi mdi-github fs-1">{{profile.github}}</span>
-      <span class="mdi mdi-linkedin fs-1">{{profile.linkedin}}</span>
-      <span class="mdi mdi-file-document fs-1">{{profile.resume}}</span>
-      <div>
-        <h2>{{profile.class}}</h2>
-        <h1>{{profile.name}}</h1>
-      </div>
-      <div>
-        <p>{{profile.bio}}</p>
+    <img :src="profile.coverImg" class="covimg">
+    <div class="px-4 card-body">
+      <img class="profileimg p-3" :src="profile.picture"><span v-if="profile.graduated"
+        class="mdi mdi-school fs-2"></span>
+      <h4 class="px-2">{{profile.class}}</h4>
+      <div class="px-2">
+        <a :href="profile.github" class="mdi mdi-github selectable fs-1 github" v-if="profile.github"></a>
+        <a :href="profile.linkedin" class="mdi mdi-linkedin selectable fs-1 linkedin my-2" v-if="profile.linkedin"></a>
+        <a :href="profile.resume" class="mdi mdi-file-document selectable fs-1 resume" v-if="profile.resume"></a>
+        <div>
+          <h1>{{profile.name}}</h1>
+        </div>
+        <div>
+          <p>{{profile.bio}}</p>
+        </div>
       </div>
     </div>
   </div>
@@ -55,5 +56,10 @@ export default {
 
 .cardshadow {
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.541);
+}
+
+.covimg {
+  max-height: 30vh;
+  object-fit: cover;
 }
 </style>
