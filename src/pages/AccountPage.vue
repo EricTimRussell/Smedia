@@ -12,7 +12,7 @@
 
   </body>
 
-  <div class="modal" tabindex="-1" id="exampleModal">
+  <div class="modal" tabindex="-1" id="editAccount">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">

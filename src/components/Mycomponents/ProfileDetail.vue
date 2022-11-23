@@ -7,7 +7,7 @@
     <div class="card-body content-position">
       <div class="d-flex">
         <button type="button" title="Edit Account" class="btn mdi mdi-cog edit-a fs-5 text-light" data-bs-toggle="modal"
-          data-bs-target="#exampleModal">
+          data-bs-target="#editAccount">
         </button>
         <img class="profileimg p-3" :src="profile.picture"><span v-if="profile.graduated"
           class="mdi mdi-school fs-5 graduated" title="Graduated"></span>
