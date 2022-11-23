@@ -1,7 +1,7 @@
 <template>
   <div class="col-md-2 p-2">
     <img :src="mick[0]?.tall" class="img-fluid ">
-    <img :src="mick[1]?.tall" class="img-fluid my-2">
+    <img :src="mick[1]?.tall" class="img-fluid my-3">
   </div>
 </template>
 

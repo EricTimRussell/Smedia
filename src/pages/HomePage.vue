@@ -1,19 +1,22 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid home-bg">
     <div class="row">
-      <div class="col-md-2 bg-secondary sidebar">
+      <div class="col-md-2 sidebar elevation-3">
         <Login />
         <Profile v-if="profile.id" />
       </div>
-      <div class="col-md-10 bg-primary justify-content-between navbar">
+      <div class="col-md-10 justify-content-between navbar">
+        <router-link :to="{ name: 'Home' }">
+          <img class="logo" src="../assets/img/Network.png" alt="Network Logo">
+        </router-link>
         <NavbarForm />
         <div class="col-md-10 px-5">
-          <CreatePost />
+          <CreatePost class="position" />
         </div>
         <div class="col-md-2 ">
           <micks-stuff class="ads" />
         </div>
-        <div class="col-md-9 m-5">
+        <div class="col-md-9 mx-5 position-post">
           <PostCard v-for="p in posts" :key="p.id" :post="p" class="my-5" @deletePost="deletePost(p.id)" />
         </div>
         <div class="col-md-9 text-center">
@@ -90,12 +93,33 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.logo {
+  max-height: 5rem;
+  margin: 2rem;
+}
+
+.position {
+  position: relative;
+  bottom: 5rem;
+}
+
+.position-post {
+  position: relative;
+  top: -12rem;
+}
+
+.home-bg {
+  background-color: whitesmoke;
+}
+
 .sidebar {
   min-height: 100vh;
+  background-color: white;
 }
 
 .navbar {
-  max-height: 15vh;
+  height: 15vh;
+  background-image: linear-gradient(to right, #8efdff, whitesmoke)
 }
 
 .ads {

@@ -1,19 +1,23 @@
 <template>
-  <div class="p-5">
-    <router-link v-if="profile.id" :to=" {name: 'ProfileInfo' , params: {id: profile.id}}">
+  <div class="p-5 text-end">
+    <router-link v-if="profile.id" :to="{ name: 'ProfileInfo', params: { id: profile.id } }">
       <img :src="profile.picture" class="profilepic">
     </router-link>
+    <span class="graduated mdi mdi-account-school fs-2" v-if="profile.graduated"></span>
   </div>
   <div class="px-3 py-1">
-    <h4 class="mdi mdi-school" v-if="profile.graduated">{{profile.name}}-{{profile.class}}</h4>
+    <h5>{{ profile.class }}</h5>
+    <h5 class="fs-2">{{ profile.name }}</h5>
   </div>
-  <div class="px-3 d-flex flex-column">
-    <a :href="profile.github" class="mdi mdi-github selectable fs-1 github" v-if="profile.github">Github</a>
-    <a :href="profile.linkedin" class="mdi mdi-linkedin selectable fs-1 linkedin my-2"
-      v-if="profile.linkedin">Linkedin</a>
-    <a :href="profile.resume" class="mdi mdi-file-document selectable fs-1 resume" v-if="profile.resume">Resume</a>
+  <div class="px-3 d-flex flex-column gap-2">
+    <a :href="profile.github" class="mdi mdi-github selectable fs-1 github" v-if="profile.github"><span
+        class="fs-4">Github</span></a>
+    <a :href="profile.linkedin" class="mdi mdi-linkedin selectable fs-1 linkedin my-2" v-if="profile.linkedin"><span
+        class="fs-4">Linkedin</span></a>
+    <a :href="profile.resume" class="mdi mdi-file-document selectable fs-1 resume" v-if="profile.resume"><span
+        class="fs-4">Resume</span></a>
   </div>
-</template>
+</template>  
 
 
 <script>
@@ -36,9 +40,19 @@ export default {
 
 
 <style lang="scss" scoped>
+.graduated {
+  border: 2px solid #00abab;
+  background-color: white;
+  padding: .4rem;
+  border-radius: 50%;
+  position: relative;
+  top: -3.5rem;
+  right: 1rem;
+}
+
 .profilepic {
   border-radius: 50%;
-  min-width: 20vh;
+  width: 20vh;
 }
 
 .github {
@@ -46,10 +60,10 @@ export default {
 }
 
 .linkedin {
-  color: lightblue;
+  color: black;
 }
 
 .resume {
-  color: lightcyan;
+  color: black;
 }
 </style>
