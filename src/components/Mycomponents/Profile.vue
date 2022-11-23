@@ -3,7 +3,7 @@
     <router-link v-if="profile.id" :to="{ name: 'ProfileInfo', params: { id: profile.id } }">
       <img :src="profile.picture" class="profilepic">
     </router-link>
-    <span class="graduated mdi mdi-account-school fs-2" v-if="profile.graduated"></span>
+    <span class="graduated mdi mdi-account-school fs-2" title="Graduated" v-if="profile.graduated"></span>
   </div>
   <div class="px-3 py-1">
     <h5>{{ profile.class }}</h5>

@@ -42,10 +42,7 @@
         <label for="resume">resume</label>
         <input type="url" class="form-control" v-model="editable.resume" name="resume">
       </div>
-      <div class="d-flex justify-content-between">
-        <router-link :to="{name: 'Home'}">
-          <i class="mdi mdi-home fs-1 selectable"></i>
-        </router-link>
+      <div class="d-flex justify-content-end">
         <button type="submit" class="btn btn-primary mt-2">Save</button>
       </div>
     </div>
